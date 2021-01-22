@@ -85,7 +85,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 8: // STATE 9 - bubble_sort_wrong.pml:13 - [t = a[1]] (0:22:2 - 2)
+	case 8: // STATE 9 - bubble_sort_wrong.pml:12 - [t = a[1]] (0:22:2 - 2)
 		IfNotBlocked
 		reached[0][9] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
@@ -107,7 +107,7 @@
 		reached[0][23] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 9: // STATE 11 - bubble_sort_wrong.pml:17 - [((j>(5-1)))] (0:0:1 - 1)
+	case 9: // STATE 11 - bubble_sort_wrong.pml:16 - [((j>(5-1)))] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][11] = 1;
 		if (!((((int)((P0 *)_this)->j)>(5-1))))
@@ -119,13 +119,13 @@
 #endif
 			((P0 *)_this)->j = 0;
 		_m = 3; goto P999; /* 0 */
-	case 10: // STATE 13 - bubble_sort_wrong.pml:18 - [((j<=(5-1)))] (0:0:0 - 1)
+	case 10: // STATE 13 - bubble_sort_wrong.pml:17 - [((j<=(5-1)))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][13] = 1;
 		if (!((((int)((P0 *)_this)->j)<=(5-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 11: // STATE 14 - bubble_sort_wrong.pml:20 - [((a[(j-1)]>a[j]))] (22:0:4 - 1)
+	case 11: // STATE 14 - bubble_sort_wrong.pml:19 - [((a[(j-1)]>a[j]))] (22:0:4 - 1)
 		IfNotBlocked
 		reached[0][14] = 1;
 		if (!((((int)((P0 *)_this)->a[ Index((((int)((P0 *)_this)->j)-1), 5) ])>((int)((P0 *)_this)->a[ Index(((int)((P0 *)_this)->j), 5) ]))))
@@ -170,7 +170,7 @@
 		reached[0][23] = 1;
 		;
 		_m = 3; goto P999; /* 6 */
-	case 12: // STATE 18 - bubble_sort_wrong.pml:21 - [((a[(j-1)]<=a[j]))] (22:0:1 - 1)
+	case 12: // STATE 18 - bubble_sort_wrong.pml:20 - [((a[(j-1)]<=a[j]))] (22:0:1 - 1)
 		IfNotBlocked
 		reached[0][18] = 1;
 		if (!((((int)((P0 *)_this)->a[ Index((((int)((P0 *)_this)->j)-1), 5) ])<=((int)((P0 *)_this)->a[ Index(((int)((P0 *)_this)->j), 5) ]))))
@@ -190,7 +190,7 @@
 		reached[0][23] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 13: // STATE 21 - bubble_sort_wrong.pml:23 - [j = (j+1)] (0:22:1 - 3)
+	case 13: // STATE 21 - bubble_sort_wrong.pml:22 - [j = (j+1)] (0:22:1 - 3)
 		IfNotBlocked
 		reached[0][21] = 1;
 		(trpt+1)->bup.oval = ((int)((P0 *)_this)->j);
@@ -203,7 +203,7 @@
 		reached[0][23] = 1;
 		;
 		_m = 3; goto P999; /* 1 */
-	case 14: // STATE 25 - bubble_sort_wrong.pml:27 - [((t!=a[1]))] (39:0:3 - 1)
+	case 14: // STATE 25 - bubble_sort_wrong.pml:26 - [((t!=a[1]))] (39:0:3 - 1)
 		IfNotBlocked
 		reached[0][25] = 1;
 		if (!((((int)((P0 *)_this)->t)!=((int)((P0 *)_this)->a[1]))))
@@ -235,7 +235,7 @@
 		reached[0][40] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 15: // STATE 28 - bubble_sort_wrong.pml:29 - [((j>(5-1)))] (0:0:1 - 1)
+	case 15: // STATE 28 - bubble_sort_wrong.pml:28 - [((j>(5-1)))] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][28] = 1;
 		if (!((((int)((P0 *)_this)->j)>(5-1))))
@@ -247,13 +247,13 @@
 #endif
 			((P0 *)_this)->j = 0;
 		_m = 3; goto P999; /* 0 */
-	case 16: // STATE 30 - bubble_sort_wrong.pml:30 - [((j<=(5-1)))] (0:0:0 - 1)
+	case 16: // STATE 30 - bubble_sort_wrong.pml:29 - [((j<=(5-1)))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][30] = 1;
 		if (!((((int)((P0 *)_this)->j)<=(5-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 17: // STATE 31 - bubble_sort_wrong.pml:32 - [((a[(j-1)]>a[j]))] (39:0:4 - 1)
+	case 17: // STATE 31 - bubble_sort_wrong.pml:31 - [((a[(j-1)]>a[j]))] (39:0:4 - 1)
 		IfNotBlocked
 		reached[0][31] = 1;
 		if (!((((int)((P0 *)_this)->a[ Index((((int)((P0 *)_this)->j)-1), 5) ])>((int)((P0 *)_this)->a[ Index(((int)((P0 *)_this)->j), 5) ]))))
@@ -298,7 +298,7 @@
 		reached[0][40] = 1;
 		;
 		_m = 3; goto P999; /* 6 */
-	case 18: // STATE 35 - bubble_sort_wrong.pml:33 - [((a[(j-1)]<=a[j]))] (39:0:1 - 1)
+	case 18: // STATE 35 - bubble_sort_wrong.pml:32 - [((a[(j-1)]<=a[j]))] (39:0:1 - 1)
 		IfNotBlocked
 		reached[0][35] = 1;
 		if (!((((int)((P0 *)_this)->a[ Index((((int)((P0 *)_this)->j)-1), 5) ])<=((int)((P0 *)_this)->a[ Index(((int)((P0 *)_this)->j), 5) ]))))
@@ -318,7 +318,7 @@
 		reached[0][40] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 19: // STATE 38 - bubble_sort_wrong.pml:35 - [j = (j+1)] (0:39:1 - 3)
+	case 19: // STATE 38 - bubble_sort_wrong.pml:34 - [j = (j+1)] (0:39:1 - 3)
 		IfNotBlocked
 		reached[0][38] = 1;
 		(trpt+1)->bup.oval = ((int)((P0 *)_this)->j);
@@ -331,7 +331,7 @@
 		reached[0][40] = 1;
 		;
 		_m = 3; goto P999; /* 1 */
-	case 20: // STATE 42 - bubble_sort_wrong.pml:37 - [((t==a[1]))] (54:0:2 - 1)
+	case 20: // STATE 42 - bubble_sort_wrong.pml:36 - [((t==a[1]))] (54:0:2 - 1)
 		IfNotBlocked
 		reached[0][42] = 1;
 		if (!((((int)((P0 *)_this)->t)==((int)((P0 *)_this)->a[1]))))
@@ -358,7 +358,7 @@
 		reached[0][55] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 21: // STATE 47 - bubble_sort_wrong.pml:41 - [t = 1] (0:54:1 - 3)
+	case 21: // STATE 47 - bubble_sort_wrong.pml:40 - [t = 1] (0:54:1 - 3)
 		IfNotBlocked
 		reached[0][47] = 1;
 		(trpt+1)->bup.oval = ((int)((P0 *)_this)->t);
@@ -371,7 +371,7 @@
 		reached[0][55] = 1;
 		;
 		_m = 3; goto P999; /* 1 */
-	case 22: // STATE 48 - bubble_sort_wrong.pml:53 - [((t<((5-1)-1)))] (54:0:1 - 1)
+	case 22: // STATE 48 - bubble_sort_wrong.pml:42 - [((t<((5-1)-1)))] (54:0:1 - 1)
 		IfNotBlocked
 		reached[0][48] = 1;
 		if (!((((int)((P0 *)_this)->t)<((5-1)-1))))
@@ -388,7 +388,7 @@
 		reached[0][55] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 23: // STATE 50 - bubble_sort_wrong.pml:54 - [((t>1))] (54:0:1 - 1)
+	case 23: // STATE 50 - bubble_sort_wrong.pml:43 - [((t>1))] (54:0:1 - 1)
 		IfNotBlocked
 		reached[0][50] = 1;
 		if (!((((int)((P0 *)_this)->t)>1)))
@@ -405,7 +405,7 @@
 		reached[0][55] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 24: // STATE 52 - bubble_sort_wrong.pml:55 - [((a[t]>a[(t+1)]))] (54:0:0 - 1)
+	case 24: // STATE 52 - bubble_sort_wrong.pml:44 - [((a[t]>a[(t+1)]))] (54:0:0 - 1)
 		IfNotBlocked
 		reached[0][52] = 1;
 		if (!((((int)((P0 *)_this)->a[ Index(((int)((P0 *)_this)->t), 5) ])>((int)((P0 *)_this)->a[ Index((((int)((P0 *)_this)->t)+1), 5) ]))))
@@ -417,7 +417,7 @@
 		reached[0][55] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 25: // STATE 57 - bubble_sort_wrong.pml:57 - [-end-] (0:0:0 - 1)
+	case 25: // STATE 57 - bubble_sort_wrong.pml:46 - [-end-] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][57] = 1;
 		if (!delproc(1, II)) continue;
