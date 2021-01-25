@@ -3,7 +3,7 @@ byte progress;
 proctype philright(chan lfp, lfv, rfp, rfv)
 { do
   :: rfp!0 -> lfp!0 -> 
-    progress = 1 -> progress = 0 -> 
+    progress = 1 -> progress = 1 -> 
     /* printf("Eating") -> */ 
     rfv!0 -> lfv!0
   od
