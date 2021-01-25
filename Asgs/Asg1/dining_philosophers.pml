@@ -52,3 +52,4 @@ never { /* Negation of []<> progress */
   od;
   accept: (!progress) -> goto accept;
 }
+

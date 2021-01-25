@@ -1,12 +1,23 @@
 // Each phil’s algorithm is below
-proctype phil(chan lfp, lfv, rfp, rfv)
+byte progress;
+proctype philright(chan lfp, lfv, rfp, rfv)
 { do
-  :: lfp!0 -> rfp!0 -> printf("Eating") -> lfv!0 -> rfv!0
+  :: rfp!0 -> lfp!0 -> 
+    progress = 1 -> progress = 0 -> 
+    /* printf("Eating") -> */ 
+    rfv!0 -> lfv!0
   od
 }
-// This is a mutex with the P and V operations
-// https://en.wikipedia.org/wiki/Semaphore_(programming)
-//
+
+proctype philleft(chan lfp, lfv, rfp, rfv)
+{ do
+  :: lfp!0 -> rfp!0 -> 
+    progress = 1 -> progress = 0 -> 
+    /* printf("Eating") -> */ 
+    lfv!0 -> rfv!0
+  od
+}
+
 proctype fork(chan p, v)
 { do
   :: p?0 // Fork taken!
@@ -27,14 +38,23 @@ init {
     // Connect and run Phil P0 to grab
     // fork 0 on left, then
     // fork 2 on right
-    run phil(p0, v0, p2, v2);
+    run philright(p0, v0, p2, v2);
     // Connect and run Phil P1 to grab
     // fork 1 on left
     // fork 0 on right
-    run phil(p1, v1, p0, v0);
+    run philleft(p1, v1, p0, v0);
     // Connect and run Phil P2 to grab
     // fork 2 on left
     // fork 1 on right
-    run phil(p2, v2, p1, v1);
+    run philleft(p2, v2, p1, v1);
   }
 }
+
+never {
+  do
+  :: skip
+  :: (!progress) -> goto accept;
+  od
+  accept: (!progress) -> goto accept;  
+}
+
