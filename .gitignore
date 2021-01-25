@@ -1,3 +1,5 @@
 pan.*
+*.o
 *.trail
+a.out
 
