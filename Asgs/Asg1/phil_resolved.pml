@@ -1,19 +1,11 @@
 // Each phil’s algorithm is below
 byte progress;
-proctype philright(chan lfp, lfv, rfp, rfv)
-{ do
-  :: rfp!0 -> lfp!0 -> 
-    progress = 1 -> progress = 1 -> 
-    /* printf("Eating") -> */ 
-    rfv!0 -> lfv!0
-  od
-}
-
-proctype philleft(chan lfp, lfv, rfp, rfv)
+proctype phil(chan lfp, lfv, rfp, rfv)
 { do
   :: lfp!0 -> rfp!0 -> 
-    progress = 1 -> progress = 0 -> 
-    /* printf("Eating") -> */ 
+    progress = 1 -> 
+    printf("Eating") -> 
+    progress = 0 -> 
     lfv!0 -> rfv!0
   od
 }
@@ -38,23 +30,23 @@ init {
     // Connect and run Phil P0 to grab
     // fork 0 on left, then
     // fork 2 on right
-    run philright(p0, v0, p2, v2);
+    run phil(p0, v0, p2, v2);
     // Connect and run Phil P1 to grab
     // fork 1 on left
     // fork 0 on right
-    run philleft(p1, v1, p0, v0);
+    run phil(p1, v1, p0, v0);
     // Connect and run Phil P2 to grab
     // fork 2 on left
     // fork 1 on right
-    run philleft(p2, v2, p1, v1);
+    run phil(p1, v1, p2, v2); // Reversed!
   }
 }
 
 never {
   do
-  :: skip
-  :: (!progress) -> goto accept;
+  :: 1
+  :: !progress -> goto accept;
   od
-  accept: (!progress) -> goto accept;  
+  accept: !progress -> goto accept;  
 }
 
