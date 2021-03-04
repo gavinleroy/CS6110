@@ -1,6 +1,6 @@
 // Gavin Gray
 // University of Utah
-// Asg5, Q 2
+// CS 6110,  Asg5, Q2
 
 method g30(m: nat, n: nat) returns (PROD: nat)
   ensures PROD == m * n
@@ -16,3 +16,4 @@ method g30(m: nat, n: nat) returns (PROD: nat)
     M := M - 1;
   }
 }
+
