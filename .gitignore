@@ -3,5 +3,5 @@ pan.*
 *.trail
 a.out
 *.dll
-*.json
+*.runtime*.json
 
