@@ -2,4 +2,6 @@ pan.*
 *.o
 *.trail
 a.out
+*.dll
+*.json
 
