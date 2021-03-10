@@ -22,14 +22,14 @@ With it, anything can happen next:
 
 LLVM has three different kinds of UB:
 
-1. Undef
+* __Undef__
   * Explicit value in the IR
   * Acts like a free floating hardware register
     - Takes all possible bit patterns at the specified width
     - Can take a different value every time it is used
   * Comes from uninitialized variables
 
-2. Poison
+3 __Poison__
   * Ephemeral affect of math instructions that violate
     - nsw - no signed wrap for add,sub,mul,shl
     - nuw - no unsigned wrap for add,sub,mul,shl
@@ -38,7 +38,7 @@ LLVM has three different kinds of UB:
   * Poison propagates via instruction results
   * If poison reaches a side-effecting instruction, the result is true UB
 
-3. True UB
+* __True UB__
   * Triggered by
     - Divide by zero
     - Illegal memory access
@@ -116,3 +116,4 @@ Examples of open bugs in LLVM (as of June, 2020):
     S1
   }
   ```
+  *to be continued*
