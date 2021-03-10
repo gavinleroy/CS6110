@@ -17,7 +17,7 @@ Undefined behavior (UB) is a design choice when designers can't
 commit (or simply don't want to) to other semantic choices.
 With it, anything can happen next:
 
-> *"Permissible	undefined	behavior	ranges	from	ignoring	the	situaLon	completely	with	
+> *"Permissible	undefined	behavior	ranges	from	ignoring	the	situation	completely	with	
 > unpredictable	results,	to	having	demons	fly	out	of	your	nose."*
 
 LLVM has three different kinds of UB:
