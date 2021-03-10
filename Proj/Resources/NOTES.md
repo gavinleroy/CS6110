@@ -29,7 +29,7 @@ LLVM has three different kinds of UB:
     - Can take a different value every time it is used
   * Comes from uninitialized variables
 
-3 __Poison__
+* __Poison__
   * Ephemeral affect of math instructions that violate
     - nsw - no signed wrap for add,sub,mul,shl
     - nuw - no unsigned wrap for add,sub,mul,shl
