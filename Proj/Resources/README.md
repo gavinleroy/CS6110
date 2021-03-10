@@ -31,3 +31,12 @@ Informal
 
 * [Alive2 Part 2](https://blog.regehr.org/archives/1737)
 
+LLVM Help
+--------
+
+* [Undefined Behavior in LLVM](https://www.cs.utah.edu/~regehr/llvm-ub.pdf)
+
+* [LLVM in detail](https://www.cs.cmu.edu/afs/cs/academic/class/15745-s13/public/lectures/L6-LLVM-Detail-1up.pdf)
+
+* [Undef and Posion](https://llvm.org/devmtg/2020-09/slides/Lee-UndefPoison.pdf)
+
