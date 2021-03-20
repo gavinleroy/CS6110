@@ -1,0 +1,14 @@
+#define N 10
+ int main(void)
+ { int a[N];
+   int i, n, result;
+
+   for (i = 0; i < N; i++)
+   a[i] = Frama_C_interval(-2147483647, 2147483648);
+   
+   while (1) {
+   n = Frama_C_interval(0, N);
+   result = find(n, a, 0);
+   }
+   return 0;
+}
