@@ -116,4 +116,11 @@ Examples of open bugs in LLVM (as of June, 2020):
     S1
   }
   ```
-  *to be continued*
+
+  * One of my favorite examples from this post (also included in a talk Nuno gave) was the example
+  of turning `mul %x, 2` into `add %x, %x`. The former always guarantees that the result is even while the 
+  ladder does not in the case of `%x` being undef. 
+  A solution to many of these types of problems is either 
+  [*freezing*](https://www.cs.utah.edu/~regehr/papers/undef-pldi17.pdf) the value or removing undef.
+
+

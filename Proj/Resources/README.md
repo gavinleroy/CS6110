@@ -17,6 +17,7 @@ Papers
 
 * [Practical Verification of Peephole Optimization with Alive](https://dl.acm.org/doi/pdf/10.1145/3166064)
 
+* [Removing undef](https://www.cs.utah.edu/~regehr/papers/undef-pldi17.pdf)
 
 Videos
 ------
