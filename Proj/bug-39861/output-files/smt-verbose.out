@@ -1,0 +1,181 @@
+----------------------------------------
+define i1 @fun(i8 %x, i8 %y) {
+%0:
+  %tmp0 = lshr i8 255, %y
+  %tmp1 = and i8 %tmp0, %x
+  %ret = icmp sge i8 %tmp1, %x
+  ret i1 %ret
+}
+=>
+define i1 @fun(i8 %x, i8 %y) {
+%0:
+  %tmp0 = lshr i8 255, %y
+  %1 = icmp sge i8 %tmp0, %x
+  ret i1 %1
+}
+
+SMT query:
+(assert true)
+
+
+SMT query:
+(declare-fun isundef_%y () (_ BitVec 1))
+(declare-fun np_%x () Bool)
+(declare-fun undef!4 () (_ BitVec 8))
+(declare-fun np_%y () Bool)
+(assert (and (forall ((undef!0 (_ BitVec 8))
+              (undef!1 (_ BitVec 8))
+              (undef!2 (_ BitVec 8)))
+       (! (let ((a!1 (not (and np_%y
+                               (= ((_ extract 7 3) undef!1) #b00000)
+                               np_%x))))
+          (let ((a!2 (or a!1
+                         (and np_%y (= ((_ extract 7 3) undef!4) #b00000) np_%x))))
+            (not a!2)))
+          :weight 0))
+     (= isundef_%y #b1)))
+
+
+SMT query:
+(declare-fun isundef_%y () (_ BitVec 1))
+(declare-fun isundef_%x () (_ BitVec 1))
+(declare-fun undef!4 () (_ BitVec 8))
+(declare-fun undef!3 () (_ BitVec 8))
+(declare-fun np_%x () Bool)
+(declare-fun np_%y () Bool)
+(declare-fun %x () (_ BitVec 8))
+(declare-fun %y () (_ BitVec 8))
+(assert (let ((a!1 (forall ((undef!0 (_ BitVec 8))
+                    (undef!1 (_ BitVec 8))
+                    (undef!2 (_ BitVec 8)))
+             (! (let ((a!1 (bvnot (bvor (bvnot undef!0)
+                                        (bvnot (bvlshr #xff %y)))))
+                      (a!2 (bvsle #x03
+                                  (concat #b000000
+                                          ((_ extract 1 0) (bvlshr #xff %y)))))
+                      (a!3 (= (not (bvsle undef!3 (bvlshr #xff %y)))
+                              (bvsle #x03 (bvlshr #xff %y)))))
+                  (and np_%y
+                       (= ((_ extract 7 3) %y) #b00000)
+                       np_%x
+                       (= (bvsle undef!2 a!1) a!2)
+                       a!3))
+                :weight 0)))
+      (a!2 (forall ((undef!0 (_ BitVec 8))
+                    (undef!1 (_ BitVec 8))
+                    (undef!2 (_ BitVec 8)))
+             (! (let ((a!1 (bvnot (bvor (bvnot %x)
+                                        (bvnot (bvlshr #xff undef!1)))))
+                      (a!3 (= (not (bvsle %x (bvlshr #xff undef!4)))
+                              (bvsle %x #x1f))))
+                (let ((a!2 (= (bvsle %x a!1)
+                              (bvsle %x (concat #b000 ((_ extract 4 0) %x))))))
+                  (and np_%y
+                       (= ((_ extract 7 3) undef!1) #b00000)
+                       np_%x
+                       a!2
+                       a!3)))
+                :weight 0)))
+      (a!3 (forall ((undef!0 (_ BitVec 8))
+                    (undef!1 (_ BitVec 8))
+                    (undef!2 (_ BitVec 8)))
+             (! (let ((a!1 (bvnot (bvor (bvnot undef!0)
+                                        (bvnot (bvlshr #xff undef!1))))))
+                  (and np_%y
+                       (= ((_ extract 7 3) undef!1) #b00000)
+                       np_%x
+                       (bvsle undef!2 a!1)
+                       (not (bvsle undef!3 (bvlshr #xff undef!4)))))
+                :weight 0))))
+  (or (and a!1 (= isundef_%x #b1) (= #b0 isundef_%y))
+      (and a!2 (= #b0 isundef_%x) (= isundef_%y #b1))
+      (and a!3 (= isundef_%x #b1) (= isundef_%y #b1)))))
+
+
+SMT query:
+(declare-fun isundef_%y () (_ BitVec 1))
+(declare-fun isundef_%x () (_ BitVec 1))
+(declare-fun undef!4 () (_ BitVec 8))
+(declare-fun %x () (_ BitVec 8))
+(declare-fun np_%x () Bool)
+(declare-fun np_%y () Bool)
+(declare-fun undef!3 () (_ BitVec 8))
+(declare-fun %y () (_ BitVec 8))
+(assert (or (and (forall ((undef!0 (_ BitVec 8))
+                  (undef!1 (_ BitVec 8))
+                  (undef!2 (_ BitVec 8)))
+           (! (let ((a!1 (not (and np_%y (= ((_ extract 7 3) %y) #b00000) np_%x)))
+                    (a!2 (bvnot (bvor (bvnot undef!0) (bvnot (bvlshr #xff %y))))))
+              (let ((a!3 (or a!1
+                             (= (bvsle undef!2 a!2)
+                                (bvsle undef!3 (bvlshr #xff %y))))))
+                (not a!3)))
+              :weight 0))
+         (= isundef_%x #b1)
+         (= #b0 isundef_%y))
+    (and (forall ((undef!0 (_ BitVec 8))
+                  (undef!1 (_ BitVec 8))
+                  (undef!2 (_ BitVec 8)))
+           (! (let ((a!1 (not (and np_%y (= ((_ extract 7 3) %y) #b00000) np_%x)))
+                    (a!2 (bvnot (bvor (bvnot %x) (bvnot (bvlshr #xff %y))))))
+              (let ((a!3 (or a!1 (= (bvsle %x a!2) (bvsle %x (bvlshr #xff %y))))))
+                (not a!3)))
+              :weight 0))
+         (= #b0 isundef_%x)
+         (= #b0 isundef_%y))
+    (and (forall ((undef!0 (_ BitVec 8))
+                  (undef!1 (_ BitVec 8))
+                  (undef!2 (_ BitVec 8)))
+           (! (let ((a!1 (not (and np_%y
+                                   (= ((_ extract 7 3) undef!1) #b00000)
+                                   np_%x
+                                   (= ((_ extract 7 3) undef!4) #b00000))))
+                    (a!2 (bvnot (bvor (bvnot undef!0)
+                                      (bvnot (bvlshr #xff undef!1))))))
+              (let ((a!3 (or a!1
+                             (= (bvsle undef!2 a!2)
+                                (bvsle undef!3 (bvlshr #xff undef!4))))))
+                (not a!3)))
+              :weight 0))
+         (= isundef_%x #b1)
+         (= isundef_%y #b1))
+    (and (forall ((undef!0 (_ BitVec 8))
+                  (undef!1 (_ BitVec 8))
+                  (undef!2 (_ BitVec 8)))
+           (! (let ((a!1 (not (and np_%y
+                                   (= ((_ extract 7 3) undef!1) #b00000)
+                                   np_%x
+                                   (= ((_ extract 7 3) undef!4) #b00000))))
+                    (a!2 (bvnot (bvor (bvnot %x) (bvnot (bvlshr #xff undef!1))))))
+              (let ((a!3 (or a!1
+                             (= (bvsle %x a!2) (bvsle %x (bvlshr #xff undef!4))))))
+                (not a!3)))
+              :weight 0))
+         (= #b0 isundef_%x)
+         (= isundef_%y #b1))))
+
+Transformation doesn't verify!
+
+ERROR: Value mismatch
+
+Example:
+i8 %x = #x7f (127)
+i8 %y = #x00 (0)
+
+Source:
+i8 %tmp0 = #xff (255, -1)
+i8 %tmp1 = #x7f (127)
+i1 %ret = #x1 (1)
+
+Target:
+i8 %tmp0 = #xff (255, -1)
+i1 %1 = #x0 (0)
+Source value: #x1 (1)
+Target value: #x0 (0)
+
+Summary:
+  0 correct transformations
+  1 incorrect transformations
+  0 failed-to-prove transformations
+  0 Alive2 errors
+

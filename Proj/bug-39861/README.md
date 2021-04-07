@@ -43,3 +43,7 @@ then to get the separate files I personally modified the `src` and `tgt` functio
 replicate the functionality of those in the bug report. While these `.ll` files are largely
 the same, the one that is most recent is `main.ll`.
 
+## Z3 encoding
+
+*todo*
+

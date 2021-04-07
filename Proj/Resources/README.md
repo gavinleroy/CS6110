@@ -32,6 +32,8 @@ Informal
 
 * [Alive2 Part 2](https://blog.regehr.org/archives/1737)
 
+* [Verifying Optimizations Using SMT Solvers](https://llvm.org/devmtg/2013-11/slides/Lopes-SMT.pdf)
+
 LLVM Help
 --------
 
