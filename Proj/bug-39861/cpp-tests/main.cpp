@@ -44,15 +44,17 @@ int main() {
   int same = 0, diff = 0; 
   for( unsigned char x = 0; x < 255; x++ ) {
     for( unsigned char y = 0; y < 255; y++ ) {
-        if( src(x, y) == tgt(x, y) ) same++;
-        else diff++;
+      if( src(x, y) == tgt(x, y) ) same++;
+      else {
+        diff++;
         printf("src(%d, %d) = %d\n", x, y, src(x, y));
         printf("tgt(%d, %d) = %d\n\n", x, y, tgt(x, y));
+      }
     }
   }
-  unsigned char x = 62, y = 0;
-  printf("src(%d, %d) = %d\n", x, y, src(x, y));
-  printf("tgt(%d, %d) = %d\n\n", x, y, tgt(x, y));
+  /* unsigned char x = 62, y = 0; */
+  /* printf("src(%d, %d) = %d\n", x, y, src(x, y)); */
+  /* printf("tgt(%d, %d) = %d\n\n", x, y, tgt(x, y)); */
   printf("similarity count : %d\ndifference count : %d\n", same, diff);
 }
 

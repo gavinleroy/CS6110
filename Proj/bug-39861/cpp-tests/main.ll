@@ -7,7 +7,7 @@ target triple = "x86_64-apple-macosx11.0.0"
 @.str.1 = private unnamed_addr constant [19 x i8] c"tgt(%d, %d) = %d\0A\0A\00", align 1
 @.str.2 = private unnamed_addr constant [45 x i8] c"similarity count : %d\0Adifference count : %d\0A\00", align 1
 ; Function Attrs: noinline nounwind optnone ssp uwtable
-define i1 @_Z3srccc(i8 %x, i8 %y) {
+define i1 @_Z3srccc(i8 signext %x, i8 signext %y) {
   %tmp0 = lshr i8 255, %y
   %tmp1 = and i8 %tmp0, %x
   %ret = icmp sge i8 %tmp1, %x
@@ -15,12 +15,11 @@ define i1 @_Z3srccc(i8 %x, i8 %y) {
 }
 
 ; Function Attrs: noinline nounwind optnone ssp uwtable
-define i1 @_Z3tgtcc(i8 %x, i8 %y) {
+define i1 @_Z3tgtcc(i8 signext %x, i8 signext %y) {
   %tmp0 = lshr i8 255, %y
   %1 = icmp sge i8 %tmp0, %x
   ret i1 %1
 }
-
 ; Function Attrs: noinline norecurse optnone ssp uwtable
 define i32 @main() #1 {
   %1 = alloca i32, align 4
@@ -28,116 +27,94 @@ define i32 @main() #1 {
   %3 = alloca i32, align 4
   %4 = alloca i8, align 1
   %5 = alloca i8, align 1
-  %6 = alloca i8, align 1
-  %7 = alloca i8, align 1
   store i32 0, i32* %1, align 4
   store i32 0, i32* %2, align 4
   store i32 0, i32* %3, align 4
   store i8 0, i8* %4, align 1
-  br label %8
+  br label %6
 
-8:                                                ; preds = %56, %0
-  %9 = load i8, i8* %4, align 1
-  %10 = zext i8 %9 to i32
-  %11 = icmp slt i32 %10, 255
-  br i1 %11, label %12, label %59
+6:                                                ; preds = %54, %0
+  %7 = load i8, i8* %4, align 1
+  %8 = zext i8 %7 to i32
+  %9 = icmp slt i32 %8, 255
+  br i1 %9, label %10, label %57
 
-12:                                               ; preds = %8
+10:                                               ; preds = %6
   store i8 0, i8* %5, align 1
-  br label %13
+  br label %11
 
-13:                                               ; preds = %52, %12
-  %14 = load i8, i8* %5, align 1
-  %15 = zext i8 %14 to i32
-  %16 = icmp slt i32 %15, 255
-  br i1 %16, label %17, label %55
+11:                                               ; preds = %50, %10
+  %12 = load i8, i8* %5, align 1
+  %13 = zext i8 %12 to i32
+  %14 = icmp slt i32 %13, 255
+  br i1 %14, label %15, label %53
 
-17:                                               ; preds = %13
-  %18 = load i8, i8* %4, align 1
-  %19 = load i8, i8* %5, align 1
-  %20 = call zeroext i1 @_Z3srccc(i8 signext %18, i8 signext %19)
-  %21 = zext i1 %20 to i32
-  %22 = load i8, i8* %4, align 1
-  %23 = load i8, i8* %5, align 1
-  %24 = call zeroext i1 @_Z3tgtcc(i8 signext %22, i8 signext %23)
-  %25 = zext i1 %24 to i32
-  %26 = icmp eq i32 %21, %25
-  br i1 %26, label %27, label %30
+15:                                               ; preds = %11
+  %16 = load i8, i8* %4, align 1
+  %17 = load i8, i8* %5, align 1
+  %18 = call i1 @_Z3srccc(i8 signext %16, i8 signext %17)
+  %19 = zext i1 %18 to i32
+  %20 = load i8, i8* %4, align 1
+  %21 = load i8, i8* %5, align 1
+  %22 = call i1 @_Z3tgtcc(i8 signext %20, i8 signext %21)
+  %23 = zext i1 %22 to i32
+  %24 = icmp eq i32 %19, %23
+  br i1 %24, label %25, label %28
 
-27:                                               ; preds = %17
-  %28 = load i32, i32* %2, align 4
-  %29 = add nsw i32 %28, 1
-  store i32 %29, i32* %2, align 4
-  br label %33
+25:                                               ; preds = %15
+  %26 = load i32, i32* %2, align 4
+  %27 = add nsw i32 %26, 1
+  store i32 %27, i32* %2, align 4
+  br label %49
 
-30:                                               ; preds = %17
-  %31 = load i32, i32* %3, align 4
-  %32 = add nsw i32 %31, 1
-  store i32 %32, i32* %3, align 4
-  br label %33
-
-33:                                               ; preds = %30, %27
-  %34 = load i8, i8* %4, align 1
-  %35 = zext i8 %34 to i32
+28:                                               ; preds = %15
+  %29 = load i32, i32* %3, align 4
+  %30 = add nsw i32 %29, 1
+  store i32 %30, i32* %3, align 4
+  %31 = load i8, i8* %4, align 1
+  %32 = zext i8 %31 to i32
+  %33 = load i8, i8* %5, align 1
+  %34 = zext i8 %33 to i32
+  %35 = load i8, i8* %4, align 1
   %36 = load i8, i8* %5, align 1
-  %37 = zext i8 %36 to i32
-  %38 = load i8, i8* %4, align 1
-  %39 = load i8, i8* %5, align 1
-  %40 = call i1 @_Z3srccc(i8 signext %38, i8 signext %39)
-  %41 = zext i1 %40 to i32
-  %42 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str, i64 0, i64 0), i32 %35, i32 %37, i32 %41)
-  %43 = load i8, i8* %4, align 1
-  %44 = zext i8 %43 to i32
+  %37 = call i1 @_Z3srccc(i8 signext %35, i8 signext %36)
+  %38 = zext i1 %37 to i32
+  %39 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str, i64 0, i64 0), i32 %32, i32 %34, i32 %38)
+  %40 = load i8, i8* %4, align 1
+  %41 = zext i8 %40 to i32
+  %42 = load i8, i8* %5, align 1
+  %43 = zext i8 %42 to i32
+  %44 = load i8, i8* %4, align 1
   %45 = load i8, i8* %5, align 1
-  %46 = zext i8 %45 to i32
-  %47 = load i8, i8* %4, align 1
-  %48 = load i8, i8* %5, align 1
-  %49 = call i1 @_Z3tgtcc(i8 signext %47, i8 signext %48)
-  %50 = zext i1 %49 to i32
-  %51 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.1, i64 0, i64 0), i32 %44, i32 %46, i32 %50)
-  br label %52
+  %46 = call i1 @_Z3tgtcc(i8 signext %44, i8 signext %45)
+  %47 = zext i1 %46 to i32
+  %48 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.1, i64 0, i64 0), i32 %41, i32 %43, i32 %47)
+  br label %49
 
-52:                                               ; preds = %33
-  %53 = load i8, i8* %5, align 1
-  %54 = add i8 %53, 1
-  store i8 %54, i8* %5, align 1
-  br label %13
+49:                                               ; preds = %28, %25
+  br label %50
 
-55:                                               ; preds = %13
-  br label %56
+50:                                               ; preds = %49
+  %51 = load i8, i8* %5, align 1
+  %52 = add i8 %51, 1
+  store i8 %52, i8* %5, align 1
+  br label %11
 
-56:                                               ; preds = %55
-  %57 = load i8, i8* %4, align 1
-  %58 = add i8 %57, 1
-  store i8 %58, i8* %4, align 1
-  br label %8
+53:                                               ; preds = %11
+  br label %54
 
-59:                                               ; preds = %8
-  store i8 62, i8* %6, align 1
-  store i8 0, i8* %7, align 1
-  %60 = load i8, i8* %6, align 1
-  %61 = zext i8 %60 to i32
-  %62 = load i8, i8* %7, align 1
-  %63 = zext i8 %62 to i32
-  %64 = load i8, i8* %6, align 1
-  %65 = load i8, i8* %7, align 1
-  %66 = call i1 @_Z3srccc(i8 signext %64, i8 signext %65)
-  %67 = zext i1 %66 to i32
-  %68 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([18 x i8], [18 x i8]* @.str, i64 0, i64 0), i32 %61, i32 %63, i32 %67)
-  %69 = load i8, i8* %6, align 1
-  %70 = zext i8 %69 to i32
-  %71 = load i8, i8* %7, align 1
-  %72 = zext i8 %71 to i32
-  %73 = load i8, i8* %6, align 1
-  %74 = load i8, i8* %7, align 1
-  %75 = call i1 @_Z3tgtcc(i8 signext %73, i8 signext %74)
-  %76 = zext i1 %75 to i32
-  %77 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.1, i64 0, i64 0), i32 %70, i32 %72, i32 %76)
-  %78 = load i32, i32* %2, align 4
-  %79 = load i32, i32* %3, align 4
-  %80 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([45 x i8], [45 x i8]* @.str.2, i64 0, i64 0), i32 %78, i32 %79)
-  %81 = load i32, i32* %1, align 4
-  ret i32 %81
+54:                                               ; preds = %53
+  %55 = load i8, i8* %4, align 1
+  %56 = add i8 %55, 1
+  store i8 %56, i8* %4, align 1
+  br label %6
+
+57:                                               ; preds = %6
+  %58 = load i32, i32* %2, align 4
+  %59 = load i32, i32* %3, align 4
+  %60 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([45 x i8], [45 x i8]* @.str.2, i64 0, i64 0), i32 %58, i32 %59)
+  %61 = load i32, i32* %1, align 4
+  ret i32 %61
 }
 declare i32 @printf(i8*, ...) #2
 
