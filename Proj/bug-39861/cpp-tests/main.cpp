@@ -52,6 +52,12 @@ int main() {
       }
     }
   }
+  if( src(255, 0) == tgt(255, 0) ) same++;
+  else {
+    diff++;
+    printf("src(%d, %d) = %d\n", 255, 0, src(255, 0));
+    printf("tgt(%d, %d) = %d\n\n", 255, 0, tgt(255, 0));
+  }
   /* unsigned char x = 62, y = 0; */
   /* printf("src(%d, %d) = %d\n", x, y, src(x, y)); */
   /* printf("tgt(%d, %d) = %d\n\n", x, y, tgt(x, y)); */

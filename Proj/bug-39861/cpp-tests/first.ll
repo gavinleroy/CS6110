@@ -115,7 +115,7 @@ define i32 @main() #1 {
   br label %8
 
 59:                                               ; preds = %8
-  store i8 126, i8* %6, align 1
+  store i8 255, i8* %6, align 1
   store i8 0, i8* %7, align 1
   %60 = load i8, i8* %6, align 1
   %61 = zext i8 %60 to i32
