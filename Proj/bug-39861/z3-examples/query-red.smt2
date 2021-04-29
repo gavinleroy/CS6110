@@ -1,5 +1,6 @@
 (declare-fun %y () (_ BitVec 8))
 (declare-fun %x () (_ BitVec 8))
+; (assert (not (= %y #x00)))
 (assert 
  (let ((a!1 
         (= 
